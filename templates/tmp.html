@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='app.css') }}">
+    <title>Store50 {% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <nav id="main-nav-bar">
+        <span id="main-title">Store50</span>
+        <div id="main-option-container">
+            {% if "user_id" in session %}
+            <a href="/">Home</a>
+            <a href="/newReleases">New Releases</a>
+            <a href="/shopping">Shoping Cart</a>
+            <a href="/aboutUs">About Us</a>
+            <a href="/contact">Contact</a>
+            {% endif %}
+            {% if not "user_id" in session %}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            {% endif %}
+            {% if "user_id" in session %}
+            <a href="/logout">Logout</a>
+            {% endif %}
+            {% if session.get('user_id')==9 %}
+            <a href="/dev">Dev</a>
+            {% endif %}
+        </div>
+        <span id="CS50">CS50</span>
+
+    </nav>
+
+    <nav id="movile-nav-bar">
+        <span id="title">Store50</span>
+
+        <button id="select-display">
+            <div id="hamburguer">
+                <img src="/static/icons/smallHamburguer.png" alt="">
+            </div>
+        </button>
+    </nav>
+
+    <div class="display-option hidden">
+        {% if "user_id" in session %}
+        <a href="/">Home</a>
+        <a href="/newReleases">New Releases</a>
+        <a href="/shopping">Shoping Cart</a>
+        <a href="/aboutUs">About Us</a>
+        <a href="/contact">Contact</a>
+        {% endif %}
+
+        {% if not "user_id" in session %}
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        {% endif %}
+
+        {% if "user_id" in session %}
+        <a href="/logout">Logout</a>
+        {% endif %}
+        {% if session.get('user_id')==9 %}
+        <a href="/dev">Dev</a>
+        {% endif %}
+
+
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li> {{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    <script src="{{ url_for('static', filename='events.js') }}"></script>
+</body>
+
+</html>

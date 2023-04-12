@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='app.css') }}">
+    <title>Store50 {% block title %}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100;1,100;1,200;1,400&family=Roboto:ital,wght@0,100;0,400;0,500;0,700;1,900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <nav class="nav-bar " id="global-nav">
+        <div class="nav-box" id="unity">
+
+            <a href="/">
+                <span class="hidden" id="CS50">CS50</span>
+            </a>
+            <a href="/">
+                <img src="/static/icons/unity.png" alt="" class="nav-img">
+            </a>
+
+        </div>
+
+        <div class="nav-box">
+
+            <a href="/black">Black Collection</a>
+            <a href="/white">White Collection</a>
+            <a href="/newReleases">New Releases</a>
+            <a href="/contact">Contact</a>
+
+        </div>
+
+        <div class="nav-box">
+
+            <a href="/shopping">
+                <img src="/static/icons/add-cart.png" alt="" class="nav-img">
+            </a>
+            <a href="/user">
+                <img src="/static/icons/user.png" alt="" class="nav-img">
+            </a>
+
+        </div>
+    </nav>
+
+    <nav class="nav-bar " id="mobile-nav">
+
+        <div class="nav-box" id="unity">
+            <a href="/">
+                <span class="hidden" id="CS50">CS50</span>
+            </a>
+            <a href="/">
+                <img src="/static/icons/unity.png" alt="" class="nav-img">
+            </a>
+
+        </div>
+
+        <div class="nav-box">
+
+            <a href="/shopping">
+                <img src="/static/icons/add-cart.png" alt="" class="nav-img">
+            </a>
+            <a href="/user">
+                <img src="/static/icons/user.png" alt="" class="nav-img">
+            </a>
+            <button id="hamburguer-button">
+                <img src="/static/icons/smallHamburguer.png" alt="" class="logo">
+            </button>
+
+        </div>
+    </nav>
+
+    <div class="mobile-options hidden">
+
+        <a href="/">Home</a>
+        <a href="/black">Black Collection</a>
+        <a href="/white">White Collection</a>
+        <a href="/newReleases">New Releases</a>
+        <a href="/contact">Contact</a>
+
+    </div>
+
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li> {{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    <footer>
+        <div class="footer-row">
+            <div id="myprofile">
+                <a href="https://github.com/AngelCorona117">
+                    <img src="/static/icons/github-with-name.png" alt="" class="logo " id="profile">
+                </a>
+            </div>
+
+        </div>
+
+        <div class="footer-row">
+            <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science?delta=0"><img src="/static/icons/CS50.webp"
+                    alt="Logo" width="147" height="26" class="logo" id="footerCS50"></a>
+        </div>
+
+        <div class="footer-row">
+
+            <a href="https://www.linkedin.com/in/%C3%A1ngel-corona-62b924268/">
+                <img src="/static/icons/Logo-Linkedin-blanc.webp" alt="" class="logo " id="linkedin">
+
+            </a>
+
+        </div>
+
+        <div class="footer-row">
+
+            <div id="myprofile">
+                <a href="mailto:319219247@fa.unam.mx">
+                    <span id="profile-text">319219247@fa.unam.mx</span>
+                </a>
+            </div>
+
+        </div>
+
+    </footer>
+    <script src="{{ url_for('static', filename='events.js') }}"></script>
+</body>
+
+</html>

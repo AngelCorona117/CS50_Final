@@ -1,0 +1,245 @@
+/* This is a single-line comment */
+/* NAV BAR STYLES */
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+a {
+    font-family: "Segoe UI", sans-serif;
+    padding: none;
+    text-decoration: none;
+    color: black;
+    margin: none;
+}
+
+
+.hidden {
+    display: none;
+}
+
+/* FORM STYLES */
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 2em auto;
+}
+
+.box .btn {
+    margin: 0.5em auto;
+    padding: 0.5em;
+}
+
+.box .hero {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: #788ed6;
+    color: #D0D5E2;
+    padding: 1em 0%;
+    margin: 0% 0% 1em 0%;
+}
+
+.box form {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 100%;
+}
+
+.inputBox {
+    position: relative;
+    width: 100%;
+    margin: 0.5em 0%;
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #374187;
+    border-radius: 5px;
+    outline: none;
+    color: #374187;
+    font-size: 1em;
+    transition: 0.5s;
+}
+
+.inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    color: #374187;
+    font-size: 1em;
+    pointer-events: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+    color: #788ed6;
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.65em;
+    padding: 0 10px;
+    background: #D0D5E2;
+    border-left: 1px solid #788ed6;
+    border-right: 1px solid #788ed6;
+    letter-spacing: 0.2em;
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+    border: 1px solid #788ed6;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+#global-nav {
+    display: none;
+
+}
+
+.nav-img {
+    width: 25px;
+    height: 25px;
+}
+
+nav a {
+    margin: 0 0.5rem;
+}
+
+.nav-box {
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+.nav-box a,
+span {
+    font-family: 'Josefin Slab', serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.nav-box a:hover {
+    color: #333333;
+}
+
+#CS50 {
+    transition: all 1s ease;
+    padding-right: 0.5rem;
+}
+
+.mobile-options a {
+    display: flex;
+    justify-content: left;
+    padding: 0.25rem 1rem 0.25rem 0;
+    align-items: flex-end;
+    justify-content: flex-end;
+    transition: all 0.5s ease-in-out;
+
+}
+
+.mobile-options a:hover {
+    color: #333333;
+    transform: translateY(-5px);
+
+
+}
+
+#hamburguer-button {
+    border: none;
+    background-color: inherit;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem;
+    position: sticky;
+    top: 100%;
+    background-color: #000000;
+}
+
+.footer-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 1rem 0 1rem;
+
+}
+
+#myprofile a {
+    display: flex;
+    align-items: center;
+
+}
+
+#profile-text {
+    color: white;
+    font-stretch: extra-expanded;
+    padding-left: 7px;
+}
+
+#profile {
+    width: 120px;
+    height: 35px;
+}
+
+#footerCS50 {
+    width: 90px;
+    height: 23px;
+}
+
+#linkedin {
+    width: 120px;
+    height: 25px;
+}
+
+@media screen and (min-width: 790px) {
+    .nav-bar {
+        display: none;
+
+    }
+
+    #global-nav {
+        display: flex;
+
+    }
+
+    .mobile-options a {
+        display: none;
+
+    }
+}
+
+
+@media screen and (min-width: 999px) {
+    .box .hero {
+        width: 450px;
+    }
+
+    .box form {
+        width: 450px;
+    }
+
+}
