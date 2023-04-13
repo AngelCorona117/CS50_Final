@@ -25,18 +25,54 @@ Contact
         {% if "user_id" in session %}
         <div class="options">
 
-            <button id="register-button">
+            <button id="account-button">
                 <img src="/static/icons/user2.png" alt="">
                 <span>Account</span>
+            </button>
+
+        </div>
+        <ul class="account-options">
+            <li>
+                <div class="options">
+                    <button>
+                        <span>Settings</span>
+                    </button>
+                </div>
+            </li>
+            <li>
+                <div class="options">
+                    <button >
+                        <span>Balance</span>
+                    </button>
+                </div>
+            </li>
+            <li>
+                <div class="options">
+                    <button id="balance-30-bar">
+                        <span>Profile</span>
+                    </button>
+                </div>
+            </li>
+
+        </ul>
+
+        <div class="options">
+
+            <button id="log-out">
+                <img src="/static/icons/log-out.png" alt="">
+                <span>Log out</span>
             </button>
 
         </div>
 
         {% endif %}
     </div>
+
+
+
     <div class="user-lateral">
         {% if not "user_id" in session %}
-        <div class="hidden" id="login-form">
+        <div class="" id="login-form">
             <div class="box">
                 <div class="hero">
                     <h2>Login</h2>
@@ -87,7 +123,89 @@ Contact
             </div>
         </div>
         {% endif %}
+
+        {% if "user_id" in session %}
+        <div class="hidden" id="settings-70-bar">
+            <div class="box">
+
+            </div>
+        </div>
+
+        <div class="hidden" id="balance-70-bar">
+            <div class="box">
+
+            </div>
+        </div>
+
+
+        <div class="hidden" id="profile-70-bar">
+            <div class="box">
+                <h2>Profile </h2>
+                <br>
+                <span>Account name: {{ loggedUsername }} </span>
+                <br>
+                <span>Account balance: ${{ loggedMoney }} USD </span>
+            </div>
+            <hr>
+
+            <div class="box">
+                <h2>Change Username </h2>
+                <br>
+                <form action="/user" method="post">
+                    <div class="inputBox">
+                        <input autocomplete="off"  class="" id="update-username" name="update-username"
+                            type="text" required>
+                        <span>New Username</span>
+                    </div>
+                    <button class="btn " type="submit" name="submit_button" value="update-username">Update</button>
+                </form>
+            </div>
+            <hr>
+
+            <div class="box">
+                <h2>Change Password </h2>
+                <br>
+                <form action="/user" method="post">
+                    <div class="inputBox">
+                        <input autocomplete="off"  class="" id="old-password" name="old-password"
+                            type="text" required>
+                        <span>Old Password</span>
+                    </div>
+                    <div class="inputBox">
+                        <input autocomplete="off"  class="" id="update-password" name="update-password"
+                            type="text" required>
+                        <span>New Password</span>
+                    </div>
+                    <div class="inputBox">
+                        <input autocomplete="off"  class="" id="update-confirmation" name="update-confirmation"
+                            type="text" required>
+                        <span>Confirm password</span>
+                    </div>
+                    <button class="btn" type="submit" name="submit_button" value="update-password">Update</button>
+                </form>
+            </div>
+
+
+        </div>
+
+
+        <div class="hidden" id="change-password-70-bar">
+            <div class="box">
+
+            </div>
+        </div>
+
+
+
+
+        {% endif %}
     </div>
+
+
 </div>
+
+
+
+
 
 {% endblock %}

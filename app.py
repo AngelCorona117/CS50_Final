@@ -48,13 +48,27 @@ def shopping():
 @app.route("/user", methods=["GET", "POST"])
 def user():
     if request.method == "GET":
+        try:
+            if session["user_id"]:
+                # if the user is logged in display his info
+                loggedUsername = db.execute(
+                    "SELECT username FROM users WHERE id = ?", session["user_id"]
+                )
+                loggedMoney = db.execute(
+                    "SELECT money FROM users WHERE id = ?", session["user_id"]
+                )
+                loggedUsername = loggedUsername[0]["username"]
+                loggedMoney = loggedMoney[0]["money"]
 
-        return render_template("user.html")
-    
+                return render_template(
+                    "user.html", loggedUsername=loggedUsername, loggedMoney=loggedMoney
+                )
+        except:
+            return render_template("user.html")
+
     elif request.method == "POST":
+        # if the user is trying to login
         if request.form["submit_button"] == "login":
-
-            print(request.form["submit_button"])
             # ensure correct usage
             loginUsername = request.form.get("login-username")
             loginPassword = request.form.get("login-password")
@@ -84,17 +98,20 @@ def user():
 
             return redirect(url_for("user"))
 
+        # if the user is trying to register
         elif request.form["submit_button"] == "register":
-
             username = request.form.get("register-username")
             password = request.form.get("register-password")
             confirmation = request.form.get("register-confirmation")
 
             # ensure correct usage
             if not username or not password:
-                flash("Incorrect usage, please provide a password and a username", "danger")
+                flash(
+                    "Incorrect usage, please provide a password and a username",
+                    "danger",
+                )
                 return redirect(url_for("user"))
-            
+
             elif confirmation != password:
                 flash("Password and confirmation do not match", "warning")
                 return redirect(url_for("user"))
@@ -117,14 +134,92 @@ def user():
                 hashedPassword,
             )
 
+            userId = db.execute("SELECT id FROM users WHERE username=?;", username)
+            userId = userId[0]["id"]
             # Remember which user has logged in
             session["user_id"] = userId
             flash("Congrats! You were registered", "success")
 
             return redirect(url_for("user"))
 
-        return redirect(url_for("user"))
+        # if the user is trying to update his username
+        elif request.form["submit_button"] == "update-username":
+            # ensure correct usage
+            newUsername = request.form.get("update-username")
 
+            if not newUsername:
+                flash("Must provide a username", "danger")
+                return redirect(url_for("user"))
+
+            oldUsername = db.execute(
+                "SELECT username FROM users WHERE id = ?", session["user_id"]
+            )
+            oldUsername = oldUsername[0]["username"]
+
+            if newUsername == oldUsername:
+                flash("You already have that username", "info")
+                return redirect(url_for("user"))
+
+            # ensure name is not taken
+            if (
+                len(db.execute("SELECT id FROM users WHERE username=?;", newUsername))
+                > 0
+            ):
+                flash("Username already taken", "warning")
+                return redirect(url_for("user"))
+
+            # update username
+            db.execute(
+                "UPDATE users SET username = ? WHERE id = ?",
+                newUsername,
+                session["user_id"],
+            )
+            flash(f"Username updated", "success")
+
+            return redirect(url_for("user"))
+
+        elif request.form["submit_button"] == "update-password":
+            oldpassword = request.form.get("old-password")
+            newpassword = request.form.get("update-password")
+            confirmation = request.form.get("update-confirmation")
+
+            # ensure correct usage
+            if not oldpassword or not newpassword or not confirmation:
+                flash(
+                    "Must provide old password, new password and a confirmation",
+                    "danger",
+                )
+                return redirect(url_for("user"))
+            elif len(newpassword) < 8:
+                flash("Password must be at least 8 characters", "danger")
+                return redirect(url_for("user"))
+            
+            elif confirmation != newpassword:
+                flash("Password and confirmation do not match", "warning")
+                return redirect(url_for("user"))
+
+            # Query database for username
+            currentPassword = db.execute(
+                "SELECT hash FROM users WHERE id = ?", session["user_id"]
+            )
+
+            # password compare returns true if both passwords match
+
+            if not check_password_hash(currentPassword[0]["hash"], oldpassword):
+                flash("Old password do not match, please try again", "warning")
+                return redirect(url_for("user"))
+
+            # if passwords match, update password
+            newpassword = generate_password_hash(newpassword)
+            db.execute(
+                "UPDATE users SET hash = ? WHERE id = ?",
+                newpassword,
+                session["user_id"],
+            )
+            flash("Password updated", "success")
+            return redirect(url_for("user"))
+
+        return redirect(url_for("user"))
 
 
 @app.route("/logout", methods=["GET"])
