@@ -193,7 +193,7 @@ def user():
             elif len(newpassword) < 8:
                 flash("Password must be at least 8 characters", "danger")
                 return redirect(url_for("user"))
-            
+
             elif confirmation != newpassword:
                 flash("Password and confirmation do not match", "warning")
                 return redirect(url_for("user"))
@@ -219,6 +219,44 @@ def user():
             flash("Password updated", "success")
             return redirect(url_for("user"))
 
+        elif request.form["submit_button"] == "update-money":
+            # ensure correct usage
+            newMoney = request.form.get("update-money")
+
+            if not newMoney:
+                flash("Must provide an amount of money", "danger")
+                return redirect(url_for("user"))
+
+            newMoney = float(newMoney)
+
+            if newMoney < 0:
+                flash("Must provide a positive number", "danger")
+                return redirect(url_for("user"))
+
+            if newMoney > 10000:
+                flash("Must provide a number less than ten thousand dollars", "warning")
+                return redirect(url_for("user"))
+
+            oldMoney = db.execute(
+                "SELECT money FROM users WHERE id = ?", session["user_id"]
+            )
+            oldMoney = float(oldMoney[0]["money"])
+
+            if oldMoney > 1000000:
+                flash("You have reached your credit limit", "info")
+                return redirect(url_for("user"))
+
+            #everything worked as supposed to, update money
+            updatedMoney = oldMoney + newMoney
+
+            db.execute(
+                "UPDATE users SET money = ? WHERE id = ?",
+                updatedMoney,
+                session["user_id"],
+            )
+            flash("Balance updated", "success")
+            return redirect(url_for("user"))
+        
         return redirect(url_for("user"))
 
 
