@@ -35,6 +35,7 @@
             <a href="/white">White Collection</a>
             <a href="/newReleases">New Releases</a>
             <a href="/contact">Contact</a>
+            <a href="/logout">logout</a>
 
         </div>
 
@@ -71,7 +72,7 @@
                 <img src="/static/icons/user.png" alt="" class="nav-img">
             </a>
             <button id="hamburguer-button">
-                <img src="/static/icons/smallHamburguer.png" alt="" class="logo">
+                <img src="/static/icons/small-hamburguer.png" alt="" class="nav-img">
             </button>
 
         </div>
@@ -88,16 +89,20 @@
     </div>
 
 
-    {% with messages = get_flashed_messages() %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
     {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li> {{ message }} </li>
-        {% endfor %}
-    </ul>
+
+    {% for category, message in messages %}
+
+    <div class="{{ category }}">
+        {{ message }}
+    </div>
+
+    {% endfor %}
     {% endif %}
     {% endwith %}
-
+    
     {% block content %}
 
     {% endblock %}
@@ -113,8 +118,8 @@
         </div>
 
         <div class="footer-row">
-            <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science?delta=0"><img src="/static/icons/CS50.webp"
-                    alt="Logo" width="147" height="26" class="logo" id="footerCS50"></a>
+            <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science?delta=0"><img
+                    src="/static/icons/CS50.webp" alt="Logo" width="147" height="26" class="logo" id="footerCS50"></a>
         </div>
 
         <div class="footer-row">

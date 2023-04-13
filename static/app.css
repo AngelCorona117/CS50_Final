@@ -25,6 +25,34 @@ a {
     display: none;
 }
 
+.danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 0.7rem;
+}
+
+.warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    padding: 0.7rem;
+}
+
+.info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    padding: 0.7rem;
+}
+
+.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    padding: 0.7rem;
+}
+
 /* FORM STYLES */
 .box {
     display: flex;
@@ -213,6 +241,50 @@ footer {
 #linkedin {
     width: 120px;
     height: 25px;
+}
+
+.user-options {
+    display: inline-block;
+    width: 30%;
+    flex-direction: column;
+    border-right: 1px solid black;
+    padding: 1rem;
+
+}
+
+.user-lateral {
+    display: inline-block;
+    width: 100%;
+    padding: 1rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.options {
+    display: flex;
+    justify-content: left;
+
+}
+
+
+.options button {
+    display: flex;
+    justify-content: left;
+    border: none;
+    background-color: inherit;
+    align-items: center;
+
+}
+
+.options button img {
+    width: 30px;
+    height: 30px;
+}
+.options button span {
+    font-size: 17px;
+    padding-left: 0.5rem;
 }
 
 @media screen and (min-width: 790px) {
