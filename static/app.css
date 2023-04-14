@@ -74,6 +74,7 @@ a {
     transition: 0.5s ease-in-out;
 }
 
+
 .box .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
@@ -93,6 +94,16 @@ a {
     flex-direction: column;
     align-items: baseline;
     width: 100%;
+}
+
+.box img {
+    width: 200px;
+    height: 200px;
+}
+
+.box span,
+h2 {
+    padding: 1rem;
 }
 
 .inputBox {
@@ -216,6 +227,7 @@ footer {
     position: sticky;
     top: 100%;
     background-color: #000000;
+    margin-top: 2rem;
 }
 
 .footer-row {
@@ -265,7 +277,7 @@ footer {
 .user-lateral {
     display: inline-block;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 0;
 }
 
 .flex {
@@ -318,6 +330,67 @@ footer {
     height: auto;
 
 }
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#font-change {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: none;
+    margin: none;
+    margin-top: 1.5rem;
+}
+
+#font-change button {
+    border: none;
+    background-color: #F5F5F5;
+    width: 300px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    min-height: 100px;
+
+}
+
+.font-option {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#extra-small {
+    font-size: 10px;
+}
+#small{
+    font-size: 13px;
+}
+#medium{
+    font-size: 16px;
+}
+#large{
+    font-size: 19px;
+}
+#extra-large{
+    font-size: 22px;
+}
+#extra-extra-large{
+    font-size: 1.6rem;
+}
+.bar-70{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 
 @media screen and (min-width: 790px) {
     .nav-bar {

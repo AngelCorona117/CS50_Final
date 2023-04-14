@@ -29,10 +29,44 @@ if (window.location.pathname === '/user') {
     const account = document.querySelector("#account-button");
     const accountOptions = document.querySelector(".account-options");
     const logOut = document.querySelector("#log-out");
+
+
     //account options
     const accountProfileButton = document.querySelector("#balance-30-bar");
-    const accountProfileBar= document.querySelector("#profile-70-bar");
+    const accountProfileBar = document.querySelector("#profile-70-bar");
+    const accountSettingButton = document.querySelector("#settings-30-bar");
+    const accountSettingBar = document.querySelector("#settings-70-bar");
+    const fontChanger = document.querySelector("#font-change");
 
+    const extraSmall = document.querySelector("#XS");
+    const small = document.querySelector("#S");
+    const medium = document.querySelector("#M");
+    const large = document.querySelector("#L");
+    const extraLarge = document.querySelector("#XL");
+    const extraExtraLarge = document.querySelector("#XXL");
+    const extraSmallSpan = document.querySelector("#extra-small");
+    const smallSpan = document.querySelector("#small");
+    const mediumSpan = document.querySelector("#medium");
+    const largeSpan = document.querySelector("#large");
+    const extraLargeSpan = document.querySelector("#extra-large");
+    const extraExtraLargeSpan = document.querySelector("#extra-extra-large");
+
+
+    //functions
+    function change_font_size(font) {
+        const elements = document.getElementsByTagName('span');
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].style.fontSize = font;
+        }
+        extraSmallSpan.style.fontSize = "10px";
+        smallSpan.style.fontSize = "13px";
+        mediumSpan.style.fontSize = "16px";
+        largeSpan.style.fontSize = "19px";
+        extraLargeSpan.style.fontSize = "";
+        extraExtraLargeSpan.style.fontSize = "1.6rem";
+    }
+
+    //events
     if (loginButton !== null) {
         loginButton.addEventListener("click", () => {
             if (!registerForm.classList.contains("hidden")) {
@@ -62,8 +96,39 @@ if (window.location.pathname === '/user') {
     });
 
     accountProfileButton.addEventListener("click", () => {
+        if (!accountSettingBar.classList.contains("hidden")) {
+            accountSettingBar.classList.add("hidden");
+        }
         accountProfileBar.classList.toggle("hidden");
     });
+    accountSettingButton.addEventListener("click", () => {
+        if (!accountProfileBar.classList.contains("hidden")) {
+            accountProfileBar.classList.add("hidden");
+        }
+        accountSettingBar.classList.toggle("hidden");
+    });
+
+    if (fontChanger !== null) {
+        extraSmall.addEventListener('click', function () {
+            change_font_size("0.6rem");
+        });
+        small.addEventListener('click', function () {
+            change_font_size("0.8rem");
+        });
+        medium.addEventListener('click', function () {
+            change_font_size("1rem");
+        });
+        large.addEventListener('click', function () {
+            change_font_size("1.2rem");
+        });
+        extraLarge.addEventListener('click', function () {
+            change_font_size("");
+        });
+        extraExtraLarge.addEventListener('click', function () {
+            change_font_size("1.6rem");
+        });
+    }
+
 }
 
 

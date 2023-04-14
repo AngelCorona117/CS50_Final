@@ -59,7 +59,7 @@ def user():
                 )
                 loggedUsername = loggedUsername[0]["username"]
                 loggedMoney = loggedMoney[0]["money"]
-
+                
                 return render_template(
                     "user.html", loggedUsername=loggedUsername, loggedMoney=loggedMoney
                 )
@@ -178,6 +178,7 @@ def user():
 
             return redirect(url_for("user"))
 
+        # if the user is trying to update his password
         elif request.form["submit_button"] == "update-password":
             oldpassword = request.form.get("old-password")
             newpassword = request.form.get("update-password")
@@ -219,6 +220,7 @@ def user():
             flash("Password updated", "success")
             return redirect(url_for("user"))
 
+        # if the user is trying to update his money
         elif request.form["submit_button"] == "update-money":
             # ensure correct usage
             newMoney = request.form.get("update-money")
@@ -246,7 +248,7 @@ def user():
                 flash("You have reached your credit limit", "info")
                 return redirect(url_for("user"))
 
-            #everything worked as supposed to, update money
+            # everything worked as supposed to, update money
             updatedMoney = oldMoney + newMoney
 
             db.execute(
@@ -256,7 +258,7 @@ def user():
             )
             flash("Balance updated", "success")
             return redirect(url_for("user"))
-        
+
         return redirect(url_for("user"))
 
 

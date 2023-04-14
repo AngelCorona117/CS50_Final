@@ -32,20 +32,7 @@ Contact
 
         </div>
         <ul class="account-options">
-            <li>
-                <div class="options">
-                    <button>
-                        <span>Settings</span>
-                    </button>
-                </div>
-            </li>
-            <li>
-                <div class="options">
-                    <button >
-                        <span>Balance</span>
-                    </button>
-                </div>
-            </li>
+
             <li>
                 <div class="options">
                     <button id="balance-30-bar">
@@ -54,6 +41,13 @@ Contact
                 </div>
             </li>
 
+            <li>
+                <div class="options">
+                    <button id="settings-30-bar">
+                        <span>Settings</span>
+                    </button>
+                </div>
+            </li>
         </ul>
 
         <div class="options">
@@ -127,34 +121,70 @@ Contact
         {% if "user_id" in session %}
         <div class="hidden" id="settings-70-bar">
             <div class="box">
+                <h2>Settings</h2>
+            </div>
+            <hr>
+
+            <div class="box">
+                <h2>Change Font size</h2>
+            </div>
+
+            <hr>
+            <div id="font-change">
+
+                <button id="XS">
+                    <span>Extra small size Sample:</span>
+                    <span class="font-option" id="extra-small"> This is extra small</span>
+                </button>
+
+                <button id="S">
+                    <span> Small size Sample:</span>
+                    <span class="font-option" id="small"> This is small</span>
+                </button>
+
+                <button id="M">
+                    <span> Medium size Sample:</span>
+                    <span class="font-option" id="medium"> This is Medium</span>
+                </button>
+
+                <button id="L">
+                    <span> Large size Sample:</span>
+                    <span class="font-option" id="large"> This is large</span>
+                </button>
+
+                <button id="XL">
+                    <span> Default size Sample:</span>
+                    <span class="font-option" id="extra-large"> This is Default</span>
+                </button>
+
+                <button id="XXL">
+                    <span> Extra Large size Sample:</span>
+                    <span class="font-option" id="extra-extra-large"> This is extra large</span>
+                </button>
 
             </div>
         </div>
 
-        <div class="hidden" id="balance-70-bar">
-            <div class="box">
+        <div class="70bar " id="profile-70-bar">
+            <div class="user-info">
+                <div class="box">
 
-            </div>
-        </div>
+                    <h2>Profile </h2>
+                    <span>Account name: {{ loggedUsername }} </span>
+                    <span>Account balance: ${{ loggedMoney }} USD </span>
 
+                </div>
 
-        <div class="" id="profile-70-bar">
-            <div class="box">
-                <h2>Profile </h2>
-                <br>
-                <span>Account name: {{ loggedUsername }} </span>
-                <br>
-                <span>Account balance: ${{ loggedMoney }} USD </span>
             </div>
             <hr>
 
             <div class="box">
                 <h2>Change Username </h2>
-                <br>
+
                 <form action="/user" method="post">
                     <div class="inputBox">
-                        <input autocomplete="off"  class="" id="update-username" name="update-username"
-                            type="text" required>
+                        <input autocomplete="off" class="" id="update-username" name="update-username" type="text"
+                            required>
                         <span>New Username</span>
                     </div>
                     <button class="btn " type="submit" name="submit_button" value="update-username">Update</button>
@@ -164,20 +194,19 @@ Contact
 
             <div class="box">
                 <h2>Change Password </h2>
-                <br>
+
                 <form action="/user" method="post">
                     <div class="inputBox">
-                        <input autocomplete="off"  class="" id="old-password" name="old-password"
-                            type="text" required>
+                        <input autocomplete="off" class="" id="old-password" name="old-password" type="text" required>
                         <span>Old Password</span>
                     </div>
                     <div class="inputBox">
-                        <input autocomplete="off"  class="" id="update-password" name="update-password"
-                            type="text" required>
+                        <input autocomplete="off" class="" id="update-password" name="update-password" type="text"
+                            required>
                         <span>New Password</span>
                     </div>
                     <div class="inputBox">
-                        <input autocomplete="off"  class="" id="update-confirmation" name="update-confirmation"
+                        <input autocomplete="off" class="" id="update-confirmation" name="update-confirmation"
                             type="text" required>
                         <span>Confirm password</span>
                     </div>
@@ -188,30 +217,20 @@ Contact
 
             <div class="box">
                 <h2>Add Credit </h2>
-                <br>
+
                 <form action="/user" method="post">
-                    
+
                     <div class="inputBox">
-                      <input autocomplete="off" class="" id="update-money" name="update-money"
-                             type="number" step="0.01" required>
-                      <span>Select Amount</span>
+                        <input autocomplete="off" class="" id="update-money" name="update-money" type="number"
+                            step="0.01" required>
+                        <span>Select Amount</span>
                     </div>
                     <button class="btn" type="submit" name="submit_button" value="update-money">Update</button>
-                  
+
                 </form>
             </div>
 
         </div>
-
-
-        <div class="hidden" id="change-password-70-bar">
-            <div class="box">
-
-            </div>
-        </div>
-
-
-
 
         {% endif %}
     </div>
