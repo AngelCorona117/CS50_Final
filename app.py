@@ -42,6 +42,7 @@ def contact():
 
 @app.route("/shopping", methods=["GET"])
 def shopping():
+
     return render_template("shopping.html")
 
 
