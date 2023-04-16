@@ -32,7 +32,10 @@ def white():
 
 @app.route("/newReleases", methods=["GET"])
 def newReleases():
-    return render_template("newReleases.html")
+
+    rows=db.execute("SELECT * FROM products ORDER BY year_of_release DESC LIMIT 15 ;")
+
+    return render_template("newReleases.html", rows=rows)
 
 
 @app.route("/contact", methods=["GET"])

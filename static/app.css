@@ -5,7 +5,7 @@
     margin: 0%;
     box-sizing: border-box;
     font-family: 'Josefin Slab', serif;
-    font-weight: 900;
+    font-weight: 500;
 }
 
 html,
@@ -20,7 +20,6 @@ a {
     color: black;
     margin: none;
 }
-
 
 .hidden {
     display: none;
@@ -183,7 +182,7 @@ nav a {
 span {
     font-family: 'Josefin Slab', serif;
     font-size: 1.2rem;
-    font-weight: 900;
+    font-weight: 500;
 }
 
 .nav-box a:hover {
@@ -368,22 +367,28 @@ footer {
 #extra-small {
     font-size: 10px;
 }
-#small{
+
+#small {
     font-size: 13px;
 }
-#medium{
+
+#medium {
     font-size: 16px;
 }
-#large{
+
+#large {
     font-size: 19px;
 }
-#extra-large{
+
+#extra-large {
     font-size: 22px;
 }
-#extra-extra-large{
+
+#extra-extra-large {
     font-size: 1.6rem;
 }
-.bar-70{
+
+.bar-70 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -391,6 +396,82 @@ footer {
     width: 100%;
 }
 
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: baseline;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    padding: none;
+    margin: none;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 400px;
+    height: auto;
+    margin: 2rem 0.5rem 0 0.5rem;
+
+}
+
+.item img {
+    width: 100%;
+    height: 400px;
+
+}
+
+.item .item-name {
+    text-transform: capitalize;
+    align-self: center;
+}
+
+.item .item-creator {
+    color: #000000;
+    font-weight: 900;
+    padding-top: 0.5rem;
+}
+
+.item-description {
+    padding: 0.5rem 0;
+}
+
+.item-color {
+    width: 15px;
+    height: 15px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.item .item-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+}
+
+.item-filter-mobile {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.item-filter-mobile button{
+    border: none;
+    background-color: white;
+    padding: 1rem;
+    font-size: 20px;
+
+}
+.item-filter-mobile button:hover{
+    background-color: #EEEEEE;
+
+}
 
 @media screen and (min-width: 790px) {
     .nav-bar {

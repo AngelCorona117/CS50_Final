@@ -129,6 +129,40 @@ if (window.location.pathname === '/user') {
         });
     }
 
+    const descriptions = document.querySelectorAll('.item-description');
+
+    // Find the tallest item-description element
+    let maxHeight = 0;
+    descriptions.forEach((desc) => {
+        const height = desc.getBoundingClientRect().height;
+        if (height > maxHeight) {
+            maxHeight = height;
+        }
+    });
+
+    // Set the height of all item-description elements to the tallest value
+    descriptions.forEach((desc) => {
+        desc.style.height = `${maxHeight}px`;
+    });
+
+}
+if (window.location.pathname === '/newReleases') {
+    const descriptions = document.querySelectorAll('.item-filter-mobile button');
+
+    // Find the tallest item-description element
+    let maxHeight = 0;
+    descriptions.forEach((desc) => {
+        const height = desc.getBoundingClientRect().height;
+        if (height > maxHeight) {
+            maxHeight = height;
+        }
+    });
+
+    // Set the height of all item-description elements to the tallest value
+    descriptions.forEach((desc) => {
+        desc.style.height = `${maxHeight}px`;
+    });
+
 }
 
 
