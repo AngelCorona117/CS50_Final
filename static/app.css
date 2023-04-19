@@ -421,7 +421,7 @@ footer {
 
 .item img {
     width: 100%;
-    height: 400px;
+    height: 500px;
 
 }
 
@@ -456,21 +456,68 @@ footer {
 }
 
 .item-filter-mobile {
+    position: relative;
     display: flex;
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
 }
-.item-filter-mobile button{
+
+.item-filter-mobile button {
     border: none;
     background-color: white;
     padding: 1rem;
+    width: 20%;
     font-size: 20px;
 
 }
-.item-filter-mobile button:hover{
+
+.item-filter-mobile span {
+    padding: 1rem;
+    width: 20%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.item-filter-mobile .element {
+    width: 20%;
+
+
+}
+
+.item-filter-mobile button:hover {
     background-color: #EEEEEE;
 
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 20%;
+    font-size: 20px;
+
+}
+
+.column {
+    display: none;
+    flex-direction: column;
+
+}
+
+.column button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.element {
+    align-self: baseline;
+}
+
+#filter-title {
+    padding: 1rem;
 }
 
 @media screen and (min-width: 790px) {

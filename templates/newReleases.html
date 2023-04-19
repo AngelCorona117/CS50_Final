@@ -4,17 +4,71 @@ New Releases
 {% endblock %}
 {% block content %}
 <div>
-    <span>Filter By:</span>
-</div>
-<div class="item-filter-mobile">
-
-    <button>Date of release</button>
-    <button>color</button>
-    <button>Season</button>
-    <button>Price</button>
-    <button>category</button>
+    <br>
+    <span id="filter-title">Filter By:</span>
 
 </div>
+
+<form method="POST" action="/newReleases">
+    <div class="item-filter-mobile" id="filter-buttons">
+        <span class="category" data-category="color">Color</span>
+        <span class="category" data-category="season">Season</span>
+        <span class="category" data-category="price">Price</span>
+        <span class="category" data-category="category">Category</span>
+    </div>
+
+    <div class="item-filter-mobile">
+        <div class="element">
+            <div class="column " id="filter-color">
+                <button name="filter" value="black|main_color">Black</button>
+                <button name="filter" value="white|main_color">White</button>
+                <button name="filter" value="gray|main_color">Gray</button>
+                <button name="filter" value="blue|main_color">Blue</button>
+                <button name="filter" value="red|main_color">Red</button>
+                <button name="filter" value="purple|main_color">Purple</button>
+                <button name="filter" value="pink|main_color">Pink</button>
+                <button name="filter" value="brown|main_color">Brown</button>
+                <button name="filter" value="yellow|main_color">Yellow</button>
+                <button name="filter" value="orange|main_color">Orange</button>
+            </div>
+        </div>
+
+        <div class="element">
+            <div class="column" id="filter-season">
+                <button name="filter" value="spring|season">Spring</button>
+                <button name="filter" value="summer|season">Summer</button>
+                <button name="filter" value="fall|season">Fall</button>
+                <button name="filter" value="winter|season">Winter</button>
+            </div>
+        </div>
+
+        <div class="element">
+            <div class="column " id="filter-price">
+                <button name="filter" value="DESC|price">Highest</button>
+                <button name="filter" value="ASC|price">Lowest</button>
+            </div>
+        </div>
+
+        <div class="element">
+            <div class="column" id="filter-category">
+                <button name="filter" value="skirts|category">Skirt</button>
+                <button name="filter" value="jeanss|category">Jeans</button>
+                <button name="filter" value="t-shirts|category">T-shirt</button>
+                <button name="filter" value="hoodies|category">Hoodie</button>
+                <button name="filter" value="shoes|category">Shoes</button>
+                <button name="filter" value="sweaters|category">Sweater</button>
+                <button name="filter" value="shirts|category">Shirt</button>
+                <button name="filter" value="pants|category">Pants</button>
+                <button name="filter" value="jackets|category">Jacket</button>
+                <button name="filter" value="coats|category">Coat</button>
+                <button name="filter" value="blazers|category">Blazer</button>
+                <button name="filter" value="dress|category">Dress</button>
+                <button name="filter" value="cardigans|category">Cardigan</button>
+            </div>
+        </div>
+    </div>
+
+</form>
 <div class="container">
     {% for row in rows %}
     <div class="item">

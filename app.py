@@ -30,11 +30,33 @@ def white():
     return render_template("white.html")
 
 
-@app.route("/newReleases", methods=["GET"])
+@app.route("/newReleases", methods=["GET", "POST"])
 def newReleases():
+    if request.method == "GET":
+        # get the 15 most recent products
 
-    rows=db.execute("SELECT * FROM products ORDER BY year_of_release DESC LIMIT 15 ;")
+        rows = db.execute(
+            "SELECT * FROM products ORDER BY year_of_release DESC LIMIT 15 ;"
+        )
 
+        return render_template("newReleases.html", rows=rows)
+
+    filtered = request.form.get("filter")
+    filtered = filtered.split("|")
+    filteredValue = filtered[0]
+    filteredType = filtered[1]
+
+    if filteredType == "price":
+        rows = db.execute(
+            f"SELECT * FROM products ORDER BY {filteredType} {filteredValue}, year_of_release ASC LIMIT 15;"
+        )
+    else:
+        rows = db.execute(
+            f"SELECT * FROM products WHERE {filteredType} = '{filteredValue}' ORDER BY year_of_release DESC LIMIT 15;"
+        )
+    for row in rows:
+        print(row)
+        print("")
     return render_template("newReleases.html", rows=rows)
 
 
@@ -45,7 +67,6 @@ def contact():
 
 @app.route("/shopping", methods=["GET"])
 def shopping():
-
     return render_template("shopping.html")
 
 
@@ -63,7 +84,7 @@ def user():
                 )
                 loggedUsername = loggedUsername[0]["username"]
                 loggedMoney = loggedMoney[0]["money"]
-                
+
                 return render_template(
                     "user.html", loggedUsername=loggedUsername, loggedMoney=loggedMoney
                 )

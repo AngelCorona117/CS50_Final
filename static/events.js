@@ -148,6 +148,11 @@ if (window.location.pathname === '/user') {
 }
 if (window.location.pathname === '/newReleases') {
     const descriptions = document.querySelectorAll('.item-filter-mobile button');
+    const categories = document.querySelectorAll('.category');
+    const columns = document.querySelectorAll(".column");
+    const elements = document.querySelectorAll('.element');
+
+
 
     // Find the tallest item-description element
     let maxHeight = 0;
@@ -161,6 +166,16 @@ if (window.location.pathname === '/newReleases') {
     // Set the height of all item-description elements to the tallest value
     descriptions.forEach((desc) => {
         desc.style.height = `${maxHeight}px`;
+    });
+    //only display the column of the selected category (filter by)
+    categories.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            columns.forEach((column) => {
+                column.style.display = 'none';
+
+            });
+            columns[index].style.display = 'flex';
+        });
     });
 
 }
