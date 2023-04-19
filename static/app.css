@@ -520,10 +520,28 @@ footer {
     padding: 1rem;
 }
 
+
+#pc-form {
+    display: none;
+}
+
 @media screen and (min-width: 790px) {
     .nav-bar {
         display: none;
 
+    }
+
+    #mobile-form {
+        display: none;
+    }
+
+    #pc-form {
+        display: flex;
+    }
+
+    .store-pc-display {
+        display: flex;
+        width: 100%;
     }
 
     #global-nav {

@@ -20,16 +20,6 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/black", methods=["GET"])
-def black():
-    return render_template("black.html")
-
-
-@app.route("/white", methods=["GET"])
-def white():
-    return render_template("white.html")
-
-
 @app.route("/newReleases", methods=["GET", "POST"])
 def newReleases():
     if request.method == "GET":
@@ -54,9 +44,7 @@ def newReleases():
         rows = db.execute(
             f"SELECT * FROM products WHERE {filteredType} = '{filteredValue}' ORDER BY year_of_release DESC LIMIT 15;"
         )
-    for row in rows:
-        print(row)
-        print("")
+
     return render_template("newReleases.html", rows=rows)
 
 
