@@ -15,9 +15,35 @@ db.execute(
 app.config["SECRET_KEY"] = "asdkasjfñlsdkfjslffyjypñ45604693045'34853'9429592457"
 
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return render_template("home.html")
+    if request.method == "GET":
+        # get the 15 most recent products
+
+        rows = db.execute("SELECT * FROM products;")
+
+        return render_template("home.html", rows=rows)
+    if request.method == "POST":
+        if request.form.get("buy") == "buyed":
+
+            item = request.form.get("selected-item")
+            return redirect(url_for("item", item=item))
+
+        filtered = request.form.get("filter")
+        filtered = filtered.split("|")
+        filteredValue = filtered[0]
+        filteredType = filtered[1]
+
+        if filteredType == "price":
+            rows = db.execute(
+                f"SELECT * FROM products ORDER BY {filteredType} {filteredValue}, year_of_release ASC ;"
+            )
+        else:
+            rows = db.execute(
+                f"SELECT * FROM products WHERE {filteredType} = '{filteredValue}' ORDER BY year_of_release DESC ;"
+            )
+
+        return render_template("home.html", rows=rows)
 
 
 @app.route("/newReleases", methods=["GET", "POST"])
@@ -53,8 +79,15 @@ def contact():
     return render_template("contact.html")
 
 
-@app.route("/shopping", methods=["GET"])
+@app.route("/shopping", methods=["GET", "POST"])
 def shopping():
+    db.execute(
+        "CREATE TABLE IF NOT EXISTS cart (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, quantity INTEGER NOT NULL, measure VARCHAR(5) NOT NULL, price MONEY NOT NULL,   FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (product_id) REFERENCES products(id));"
+    )
+
+    if request.method == "GET":
+        return render_template("shopping.html")
+
     return render_template("shopping.html")
 
 

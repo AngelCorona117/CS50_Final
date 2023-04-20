@@ -3,6 +3,370 @@
 Home
 {% endblock %}
 {% block content %}
-<h1>Home</h1>
-<p>Home</p>
+
+<form method="POST" action="/" id="mobile-form">
+    <div>
+        <br>
+        <span id="filter-title">Filter By:</span>
+
+    </div>
+
+    <div class="item-filter-mobile" id="filter-buttons">
+        <span class="category" data-category="color">Color</span>
+        <span class="category" data-category="season">Season</span>
+        <span class="category" data-category="price">Price</span>
+        <span class="category" data-category="category">Category</span>
+    </div>
+
+    <div class="item-filter-mobile">
+        <div class="element">
+            <div class="column " id="filter-color">
+                <button name="filter" value="black|main_color">Black</button>
+                <button name="filter" value="white|main_color">White</button>
+                <button name="filter" value="gray|main_color">Gray</button>
+                <button name="filter" value="blue|main_color">Blue</button>
+                <button name="filter" value="red|main_color">Red</button>
+                <button name="filter" value="green|main_color">Green</button>
+                <button name="filter" value="purple|main_color">Purple</button>
+                <button name="filter" value="pink|main_color">Pink</button>
+                <button name="filter" value="brown|main_color">Brown</button>
+                <button name="filter" value="yellow|main_color">Yellow</button>
+                <button name="filter" value="orange|main_color">Orange</button>
+            </div>
+        </div>
+
+        <div class="element">
+            <div class="column" id="filter-season">
+                <button name="filter" value="spring|season">Spring</button>
+                <button name="filter" value="summer|season">Summer</button>
+                <button name="filter" value="fall|season">Fall</button>
+                <button name="filter" value="winter|season">Winter</button>
+            </div>
+        </div>
+
+        <div class="element">
+            <div class="column " id="filter-price">
+                <button name="filter" value="DESC|price">Highest</button>
+                <button name="filter" value="ASC|price">Lowest</button>
+            </div>
+        </div>
+
+        <div class="element">
+            <div class="column" id="filter-category">
+                <button name="filter" value="skirts|category">Skirt</button>
+                <button name="filter" value="jeanss|category">Jeans</button>
+                <button name="filter" value="t-shirts|category">T-shirt</button>
+                <button name="filter" value="hoodies|category">Hoodie</button>
+                <button name="filter" value="shoes|category">Shoes</button>
+                <button name="filter" value="sweaters|category">Sweater</button>
+                <button name="filter" value="shirts|category">Shirt</button>
+                <button name="filter" value="pants|category">Pants</button>
+                <button name="filter" value="jackets|category">Jacket</button>
+                <button name="filter" value="coats|category">Coat</button>
+                <button name="filter" value="blazers|category">Blazer</button>
+                <button name="filter" value="dress|category">Dress</button>
+                <button name="filter" value="cardigans|category">Cardigan</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+<div class="store-pc-display">
+    <form method="POST" action="/" id="pc-form" class="user-options">
+
+
+        <div class="options">
+            <button>
+                <span>Color</span>
+            </button>
+        </div>
+
+        <div>
+            <ul class="account-options">
+
+                <li>
+                    <div class="options">
+                        <button name="filter" value="black|main_color">
+                            <span>Black</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="white|main_color">
+                            <span>White</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="gray|main_color">
+                            <span>Gray</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="blue|main_color">
+                            <span>Blue</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="red|main_color">
+                            <span>Red</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="green|main_color">
+                            <span>Green</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="purple|main_color">
+                            <span>Purple</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="pink|main_color">
+                            <span>Pink</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="brown|main_color">
+                            <span>Brown</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="yellow|main_color">
+                            <span>Yellow</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="orange|main_color">
+                            <span>Orange</span>
+                        </button>
+                    </div>
+                </li>
+        </div>
+
+
+        <div class="options">
+            <button>
+                <span>Season</span>
+            </button>
+        </div>
+
+        <div>
+            <ul class="account-options">
+
+                <li>
+                    <div class="options">
+                        <button name="filter" value="spring|season">
+                            <span>Spring</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="summer|season">
+                            <span>Summer</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="fall|season">
+                            <span>Fall</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="winter|season">
+                            <span>Winter</span>
+                        </button>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+
+        <div class="options">
+            <button>
+                <span>Price</span>
+            </button>
+        </div>
+
+        <div>
+            <ul class="account-options">
+                <li>
+                    <div class="options">
+                        <button name="filter" value="DESC|price">
+                            <span>Highest</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="ASC|price">
+                            <span>Lowest</span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="options">
+            <button>
+                <span>Category</span>
+            </button>
+        </div>
+
+        <div>
+            <ul class="account-options">
+                <li>
+                    <div class="options">
+                        <button name="filter" value="skirts|category">
+                            <span>Skirt</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="jeans|category">
+                            <span>Jeans</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="t-shirts|category">
+                            <span>T-shirt</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="hoodies|category">
+                            <span>Hoodie</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="shoes|category">
+                            <span>Shoes</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="sweaters|category">
+                            <span>Sweater</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="shirts|category">
+                            <span>Shirt</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="pants|category">
+                            <span>Pants</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="jackets|category">
+                            <span>Jacket</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="coats|category">
+                            <span>Coat</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="blazers|category">
+                            <span>Blazer</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="dress|category">
+                            <span>Dress</span>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="options">
+                        <button name="filter" value="cardigans|category">
+                            <span>Cardigan</span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </form>
+
+
+    <div class="container">
+        {% for row in rows %}
+        <div class="item">
+            <form method="POST" action="/" id="item-form" >
+                
+                <input type="hidden" name="selected-item" value="{{row['id']}}">
+                <span class="item-name" >{{row["name"]}} </span>
+                <img src="{{row['image_path']}}" alt="">
+
+                <div class="item-container">
+                    <span class="item-creator">{{row["creator"]}} </span>
+                    <span class="item-color" style="background-color: {{row['main_color']}}"></span>
+                </div>
+
+                <span class="item-description">{{row["description"]}} </span>
+
+                <div class="item-container">
+                    <span class="item-price"> USD {{ row["price"]|float }} </span>
+                    <button name="buy" value="buyed" type="submit" class="btn">Add to cart</button>
+                </div>
+            </form>
+        </div>
+
+
+        {% endfor %}
+    </div>
+
+</div>
+
+
 {% endblock %}

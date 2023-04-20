@@ -454,7 +454,9 @@ footer {
     align-items: baseline;
     width: 100%;
 }
-
+.item-container{
+    margin: 0.3rem 0;
+}
 .item-filter-mobile {
     position: relative;
     display: flex;
@@ -523,6 +525,22 @@ footer {
 
 #pc-form {
     display: none;
+}
+
+.item-container button {
+    padding: 0.25rem 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: "#F5F5F5";
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.item-container button {
+    padding: 0.25rem 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: "#F5F5F5";
 }
 
 @media screen and (min-width: 790px) {
