@@ -25,9 +25,10 @@ def home():
         return render_template("home.html", rows=rows)
     if request.method == "POST":
         if request.form.get("buy") == "buyed":
-
             item = request.form.get("selected-item")
-            return redirect(url_for("item", item=item))
+            session["item"] = item
+
+            return redirect(url_for("item"))
 
         filtered = request.form.get("filter")
         filtered = filtered.split("|")
@@ -56,7 +57,13 @@ def newReleases():
         )
 
         return render_template("newReleases.html", rows=rows)
+    
+    if request.form.get("buy") == "buyed":
+        item = request.form.get("selected-item")
+        session["item"] = item
 
+        return redirect(url_for("item"))
+    
     filtered = request.form.get("filter")
     filtered = filtered.split("|")
     filteredValue = filtered[0]
@@ -72,6 +79,86 @@ def newReleases():
         )
 
     return render_template("newReleases.html", rows=rows)
+
+
+@app.route("/item", methods=["GET", "POST"])
+def item():
+    item = session["item"]
+    if request.method == "GET":
+        if not "user_id" in session:
+            flash("Log in to add items to your cart", "info")
+            return redirect(url_for("home"))
+
+        if not "item" in session:
+            flash("Select an item to view", "info")
+            return redirect(url_for("home"))
+
+        # get the last product the user clicked
+        item = db.execute("SELECT * FROM products WHERE id = ?", item)[0]
+
+        return render_template("item.html", item=item)
+
+    size = request.form.get("size")
+    ammount = request.form.get("ammount")
+    stock = db.execute("SELECT stock FROM products WHERE id = ?", item)[0]["stock"]
+
+    # ensure correct usage
+    if not size or not ammount:
+        flash("Select a size and a quantity", "danger")
+        return redirect(url_for("item"))
+
+    try:
+        ammount = int(ammount)
+    except:
+        flash("Select a valid quantity", "danger")
+        return redirect(url_for("item"))
+
+    if ammount < 1:
+        flash("Select a valid quantity", "danger")
+        return redirect(url_for("item"))
+
+    if ammount > stock:
+        flash("Not enough stock", "danger")
+        return redirect(url_for("item"))
+
+    # check if the user has any other item of the same type in the cart
+    cart = db.execute(
+        "SELECT * FROM cart WHERE user_id = ? AND product_id = ?  AND measure= ?",
+        session["user_id"],
+        item,
+        size,
+    )
+    if len(cart) >= 1:
+        # update the quantity of the item in the cart
+        actualAmmount = cart[0]["quantity"]
+        newAmmount = actualAmmount + ammount
+
+        if newAmmount > stock:
+            flash("Not enough stock", "danger")
+            return redirect(url_for("item"))
+
+        db.execute(
+            "UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ?",
+            newAmmount,
+            session["user_id"],
+            item,
+        )
+        flash("Items owned updated", "success")
+        return redirect(url_for("home"))
+
+    # add the item to the cart if the user does not have any of that size
+    price = db.execute("SELECT price FROM products WHERE id = ?", item)[0]["price"]
+
+    db.execute(
+        "INSERT INTO cart (user_id, product_id, quantity, measure, price) VALUES (?, ?, ?, ?, ?)",
+        session["user_id"],
+        item,
+        ammount,
+        size,
+        price,
+    )
+    flash("Item added to cart", "success")
+    return redirect(url_for("home"))
 
 
 @app.route("/contact", methods=["GET"])

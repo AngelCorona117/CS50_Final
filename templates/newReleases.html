@@ -342,18 +342,24 @@ New Releases
     <div class="container">
         {% for row in rows %}
         <div class="item">
+            <form method="POST" action="/newReleases">
 
-            <span class="item-name">{{row["name"]}} </span>
-            <img src="{{row['image_path']}}" alt="">
+                <input type="hidden" name="selected-item" value="{{row['id']}}">
+                <span class="item-name">{{row["name"]}} </span>
+                <img src="{{row['image_path']}}" alt="">
 
-            <div class="item-container">
-                <span class="item-creator">{{row["creator"]}} </span>
-                <span class="item-color" style="background-color: {{row['main_color']}}"></span>
-            </div>
+                <div class="item-container">
+                    <span class="item-creator">{{row["creator"]}} </span>
+                    <span class="item-color" style="background-color: {{row['main_color']}}"></span>
+                </div>
 
-            <span class="item-description">{{row["description"]}} </span>
-            <span class="item-price"> USD {{ row["price"]|float }} </span>
+                <span class="item-description">{{row["description"]}} </span>
 
+                <div class="item-container">
+                    <span class="item-price"> USD {{ row["price"]|float }} </span>
+                    <button name="buy" value="buyed" type="submit" class="btn">Add to cart</button>
+                </div>
+            </form>
         </div>
 
 

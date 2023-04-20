@@ -1,8 +1,47 @@
 {% extends "layout.html" %}
 {% block title %}
-Contact
+Item
 {% endblock %}
 {% block content %}
-<h1>item</h1>
+
+<div class="container">
+    <div class="item">
+        <form method="POST" action="/item">
+
+            <img src="{{item['image_path']}}" alt="">
+            <div class="item-container">
+                <span class="item-creator">{{item["creator"]}} </span>
+                <span class="item-price"> USD {{ item["price"]|float }}$ </span>
+            </div>
+
+            <div class="item-container">
+                <span class="item-name">{{item["name"]}} </span>
+                <span class="item-color" style="background-color: {{item['main_color']}}"></span>
+
+            </div>
+
+            <span class="item-description">{{item["description"]}} </span>
+
+            <select name="size" class="item-size" required>
+                <option value="" selected disabled hidden>SELECT A SIZE</option>
+                <option value="xs">XS</option>
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+                <option value="xl">XL</option>
+                <option value="xxl">XXL</option>
+            </select>
+
+            <div class="inputBox">
+                <input autocomplete="off" type="number" name="ammount" class="item-size" step="1" required>
+                <span>SELECT AN AMMOUNT</span>
+            </div>
+
+            <button class="item-size buttonn">ADD TO CART</button>
+        </form>
+
+
+    </div>
+</div>
 
 {% endblock %}

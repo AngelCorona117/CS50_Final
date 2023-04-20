@@ -342,10 +342,10 @@ Home
     <div class="container">
         {% for row in rows %}
         <div class="item">
-            <form method="POST" action="/" id="item-form" >
-                
+            <form method="POST" action="/">
+
                 <input type="hidden" name="selected-item" value="{{row['id']}}">
-                <span class="item-name" >{{row["name"]}} </span>
+                <span class="item-name">{{row["name"]}} </span>
                 <img src="{{row['image_path']}}" alt="">
 
                 <div class="item-container">
