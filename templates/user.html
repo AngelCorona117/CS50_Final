@@ -127,9 +127,10 @@ Contact
 
             <div class="box">
                 <h2>Change Font size</h2>
+
+
             </div>
 
-            <hr>
             <div id="font-change">
 
                 <button id="XS">
@@ -162,6 +163,26 @@ Contact
                     <span class="font-option" id="extra-extra-large"> This is extra large</span>
                 </button>
 
+            </div>
+
+            <hr>
+
+            <div class="box">
+                <h2>Update stock </h2>
+
+                <form action="/user" method="post">
+                    <div class="inputBox">
+                        <input autocomplete="off" class="" id="update-stock-id" name="update-stock-id" type="number"
+                            required>
+                        <span>Select an item (based of id)</span>
+                    </div>
+                    <div class="inputBox">
+                        <input autocomplete="off" class="" id="update-stock" name="update-stock" type="number"
+                            required>
+                        <span>Select ammount to add</span>
+                    </div>
+                    <button class="btn " type="submit" name="submit_button" value="update-stock-button">Update</button>
+                </form>
             </div>
         </div>
 
@@ -197,17 +218,18 @@ Contact
 
                 <form action="/user" method="post">
                     <div class="inputBox">
-                        <input autocomplete="off" class="" id="old-password" name="old-password" type="text" required>
+                        <input autocomplete="off" class="" id="old-password" name="old-password" type="password"
+                            required>
                         <span>Old Password</span>
                     </div>
                     <div class="inputBox">
-                        <input autocomplete="off" class="" id="update-password" name="update-password" type="text"
+                        <input autocomplete="off" class="" id="update-password" name="update-password" type="password"
                             required>
                         <span>New Password</span>
                     </div>
                     <div class="inputBox">
                         <input autocomplete="off" class="" id="update-confirmation" name="update-confirmation"
-                            type="text" required>
+                            type="password" required>
                         <span>Confirm password</span>
                     </div>
                     <button class="btn" type="submit" name="submit_button" value="update-password">Update</button>

@@ -58,6 +58,10 @@ a {
     padding: 0.7rem;
 }
 
+.btn {
+    cursor: pointer;
+}
+
 /* FORM STYLES */
 
 .box {
@@ -171,6 +175,8 @@ h2 {
 .nav-img {
     width: 25px;
     height: 25px;
+    margin: none;
+    padding: none;
 }
 
 nav a {
@@ -286,7 +292,7 @@ footer {
 
 .flex {
     display: flex;
-    height: 100%;
+    height: auto;
 }
 
 .options {
@@ -339,6 +345,10 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.user-info span {
+    text-align: center;
 }
 
 #font-change {
@@ -430,9 +440,10 @@ footer {
 
 }
 
-.item .item-name {
+form .item-name {
+    display: flex;
     text-transform: capitalize;
-    align-self: center;
+    justify-content: center;
 }
 
 .item .item-creator {
@@ -646,6 +657,12 @@ footer {
     font-weight: 600;
 }
 
+.category {
+    cursor: pointer;
+}
+.options-main{
+    font-weight: 900;
+}
 @media screen and (min-width: 790px) {
     .nav-bar {
         display: none;
@@ -691,7 +708,11 @@ footer {
         width: 450px;
     }
 
+    .user-options {
+        width: 300px;
+    }
 }
+
 
 @media screen and (min-width: 1500px) {
     .cart-item {

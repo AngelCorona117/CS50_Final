@@ -1,5 +1,6 @@
 import os
 from cs50 import SQL
+from config import Config
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 
@@ -12,7 +13,8 @@ db.execute(
     "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, hash TEXT NOT NULL, money MONEY DEFAULT 10000.00);"
 )
 
-app.config["SECRET_KEY"] = "asdkasjfñlsdkfjslffyjypñ45604693045'34853'9429592457"
+app = Flask(__name__)
+app.config.from_object(Config)
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -83,15 +85,18 @@ def newReleases():
 
 @app.route("/item", methods=["GET", "POST"])
 def item():
-    item = session["item"]
-    if request.method == "GET":
-        if not "user_id" in session:
-            flash("Log in to add items to your cart", "info")
-            return redirect(url_for("home"))
+    if not "user_id" in session:
+        flash("Log in to add items to your cart", "info")
+        return redirect(url_for("home"))
 
-        if not "item" in session:
-            flash("Select an item to view", "info")
-            return redirect(url_for("home"))
+    if not "item" in session:
+        flash("Select an item to view", "info")
+        return redirect(url_for("home"))
+    
+    #get the last clicked item
+    item = session["item"]
+
+    if request.method == "GET":
 
         # get the last product the user clicked
         item = db.execute("SELECT * FROM products WHERE id = ?", item)[0]
@@ -161,16 +166,12 @@ def item():
     return redirect(url_for("home"))
 
 
-@app.route("/contact", methods=["GET"])
-def contact():
-    return render_template("contact.html")
-
-
 @app.route("/shopping", methods=["GET", "POST"])
 def shopping():
     db.execute(
         "CREATE TABLE IF NOT EXISTS cart (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, quantity INTEGER NOT NULL, measure VARCHAR(5) NOT NULL, price MONEY NOT NULL,   FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (product_id) REFERENCES products(id));"
     )
+
     if not "user_id" in session:
         flash("Log in to add items to your cart", "info")
         return redirect(url_for("home"))
@@ -178,41 +179,31 @@ def shopping():
     money = db.execute("SELECT money FROM users WHERE id = ?", session["user_id"])[0][
         "money"
     ]
-    money = float(money)
+
     rows = db.execute(
         "SELECT cart.*, image_path, name from products INNER JOIN cart ON products.id = cart.product_id WHERE cart.user_id = ?",
         session["user_id"],
     )
-    formattedMoney = "{:.2f}".format(money)
-
-    if request.method == "GET":
-        # select image from products and everything from cart and join them
-
-        if len(rows) == 0:
-            flash("Your cart is empty", "info")
-            return redirect(url_for("home"))
-
-        totalCost = 0
-        for row in rows:
-            quantity = row["quantity"]
-            price = row["price"]
-            totalCost += quantity * price
-        formattedTotalCost = "{:.2f}".format(totalCost)
-
-
-        return render_template(
-            "shopping.html",
-            rows=rows,
-            money=formattedMoney,
-            totalCost=formattedTotalCost,
-        )
+    if len(rows) == 0:
+        flash("Your cart is empty", "info")
+        return redirect(url_for("home"))
 
     totalCost = 0
     for row in rows:
         quantity = row["quantity"]
         price = row["price"]
         totalCost += quantity * price
-    formattedTotalCost = "{:.2f}".format(totalCost)
+    totalCost = round(totalCost, 2)
+
+    if request.method == "GET":
+        # select image from products and everything from cart and join them
+
+        return render_template(
+            "shopping.html",
+            rows=rows,
+            money=money,
+            totalCost=totalCost,
+        )
 
     # check if the user has enough money
     if totalCost > money:
@@ -220,14 +211,15 @@ def shopping():
         return render_template(
             "shopping.html",
             rows=rows,
-            money=formattedMoney,
-            totalCost=formattedTotalCost,
+            money=money,
+            totalCost=totalCost,
         )
 
     # if he has enough money, update the money and delete the items from the cart+update the stock
     newMoney = money - totalCost
     db.execute("UPDATE users SET money = ? WHERE id = ?", newMoney, session["user_id"])
 
+    # update the stock of those items
     for row in rows:
         item = row["product_id"]
         quantity = row["quantity"]
@@ -235,6 +227,7 @@ def shopping():
         newStock = stock - quantity
         db.execute("UPDATE products SET stock = ? WHERE id = ?", newStock, item)
 
+    # delete the items from the cart
     db.execute("DELETE FROM cart WHERE user_id = ?", session["user_id"])
 
     flash("Purchase completed", "success")
@@ -255,6 +248,7 @@ def user():
                 )
                 loggedUsername = loggedUsername[0]["username"]
                 loggedMoney = loggedMoney[0]["money"]
+                loggedMoney = round(loggedMoney, 2)
 
                 return render_template(
                     "user.html", loggedUsername=loggedUsername, loggedMoney=loggedMoney
@@ -387,8 +381,13 @@ def user():
                     "danger",
                 )
                 return redirect(url_for("user"))
+
             elif len(newpassword) < 8:
                 flash("Password must be at least 8 characters", "danger")
+                return redirect(url_for("user"))
+
+            elif oldpassword == newpassword:
+                flash("Old password and new password must be different", "warning")
                 return redirect(url_for("user"))
 
             elif confirmation != newpassword:
@@ -404,6 +403,10 @@ def user():
 
             if not check_password_hash(currentPassword[0]["hash"], oldpassword):
                 flash("Old password do not match, please try again", "warning")
+                return redirect(url_for("user"))
+
+            elif oldpassword == newpassword:
+                flash("Old password and new password must be different", "warning")
                 return redirect(url_for("user"))
 
             # if passwords match, update password
@@ -453,6 +456,46 @@ def user():
                 session["user_id"],
             )
             flash("Balance updated", "success")
+            return redirect(url_for("user"))
+        
+        elif request.form["submit_button"] == "update-stock-button":
+
+            itemID= request.form.get("update-stock-id")
+            itemQuantity = request.form.get("update-stock")
+
+            # ensure correct usage
+            if not itemID or not itemQuantity:
+                flash("Must provide an item ID and a quantity", "danger")
+                return redirect(url_for("user"))
+            
+            try:
+                itemID = int(itemID)
+                itemQuantity = int(itemQuantity)
+            except:
+                flash("Must provide a valid item ID and a quantity", "danger")
+                return redirect(url_for("user"))
+            
+            if itemQuantity < 0:
+                flash("Must provide a positive quantity", "danger")
+                return redirect(url_for("user"))
+            
+            if itemQuantity > 100:
+                flash("Must provide a quantity less than 100", "warning")
+                return redirect(url_for("user"))
+            
+            # ensure item exists
+            item = db.execute("SELECT * FROM products WHERE id = ?", itemID)
+
+            if len(item) != 1:
+                flash("product does not exist", "warning")
+                return redirect(url_for("user"))
+            
+            #update stock
+            oldStock=item[0]["stock"]
+            newStock=oldStock+itemQuantity
+
+            db.execute("UPDATE products SET stock = ? WHERE id = ?", newStock, itemID)
+            flash("Stock updated", "success")
             return redirect(url_for("user"))
 
         return redirect(url_for("user"))
