@@ -3,6 +3,46 @@
 Shopping
 {% endblock %}
 {% block content %}
-<h1>Shoping</h1>
-<p>lorem100</p>
+<br>
+<br>
+<div class="container">
+    {% for row in rows %}
+    <div class="cart-item">
+        <div class="bar-40">
+            <img src="{{row['image_path']}}" alt="">
+        </div>
+        <div class="bar-60">
+            <span>{{row["name"]}} </span>
+            <span>Quantity: {{row["quantity"]}} </span>
+            <span>Measure: {{row["measure"]}} </span>
+            <span>Price: USD {{row["price"]}}$ </span>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<div class="buy-container">
+    <div class="buy-cart">
+        <div class="buy-price-container">
+            <div class="buy-row">
+                <span class="cart-money">AVAILABLE CASH:</span>
+                <span class="cart-money">TOTAL:</span>
+            </div>
+            <div class="buy-row">
+                <span class="rigth">USD {{money}} $ </span>
+                <span class="rigth">USD {{totalCost}} $ </span>
+            </div>
+        </div>
+        <form id="shopping-form" method="POST" action="/shopping">
+            <input type="hidden" name="total" value="a">
+            <button>BUY</button>
+        </form>
+
+
+    </div>
+
+</div>
+
+
 {% endblock %}

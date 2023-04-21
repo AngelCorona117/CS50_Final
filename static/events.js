@@ -146,12 +146,10 @@ if (window.location.pathname === '/user') {
     });
 
 }
-if (window.location.pathname === '/newReleases') {
+if (window.location.pathname === '/newReleases' || window.location.pathname === '/') {
     const descriptions = document.querySelectorAll('.item-filter-mobile button');
     const categories = document.querySelectorAll('.category');
     const columns = document.querySelectorAll(".column");
-    const elements = document.querySelectorAll('.element');
-
 
 
     // Find the tallest item-description element
@@ -179,6 +177,3 @@ if (window.location.pathname === '/newReleases') {
     });
 
 }
-
-
-

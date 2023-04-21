@@ -57,13 +57,13 @@ def newReleases():
         )
 
         return render_template("newReleases.html", rows=rows)
-    
+
     if request.form.get("buy") == "buyed":
         item = request.form.get("selected-item")
         session["item"] = item
 
         return redirect(url_for("item"))
-    
+
     filtered = request.form.get("filter")
     filtered = filtered.split("|")
     filteredValue = filtered[0]
@@ -171,11 +171,74 @@ def shopping():
     db.execute(
         "CREATE TABLE IF NOT EXISTS cart (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, quantity INTEGER NOT NULL, measure VARCHAR(5) NOT NULL, price MONEY NOT NULL,   FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (product_id) REFERENCES products(id));"
     )
+    if not "user_id" in session:
+        flash("Log in to add items to your cart", "info")
+        return redirect(url_for("home"))
+
+    money = db.execute("SELECT money FROM users WHERE id = ?", session["user_id"])[0][
+        "money"
+    ]
+    money = float(money)
+    rows = db.execute(
+        "SELECT cart.*, image_path, name from products INNER JOIN cart ON products.id = cart.product_id WHERE cart.user_id = ?",
+        session["user_id"],
+    )
+    formattedMoney = "{:.2f}".format(money)
 
     if request.method == "GET":
-        return render_template("shopping.html")
+        # select image from products and everything from cart and join them
 
-    return render_template("shopping.html")
+        if len(rows) == 0:
+            flash("Your cart is empty", "info")
+            return redirect(url_for("home"))
+
+        totalCost = 0
+        for row in rows:
+            quantity = row["quantity"]
+            price = row["price"]
+            totalCost += quantity * price
+        formattedTotalCost = "{:.2f}".format(totalCost)
+
+
+        return render_template(
+            "shopping.html",
+            rows=rows,
+            money=formattedMoney,
+            totalCost=formattedTotalCost,
+        )
+
+    totalCost = 0
+    for row in rows:
+        quantity = row["quantity"]
+        price = row["price"]
+        totalCost += quantity * price
+    formattedTotalCost = "{:.2f}".format(totalCost)
+
+    # check if the user has enough money
+    if totalCost > money:
+        flash("Not enough money", "danger")
+        return render_template(
+            "shopping.html",
+            rows=rows,
+            money=formattedMoney,
+            totalCost=formattedTotalCost,
+        )
+
+    # if he has enough money, update the money and delete the items from the cart+update the stock
+    newMoney = money - totalCost
+    db.execute("UPDATE users SET money = ? WHERE id = ?", newMoney, session["user_id"])
+
+    for row in rows:
+        item = row["product_id"]
+        quantity = row["quantity"]
+        stock = db.execute("SELECT stock FROM products WHERE id = ?", item)[0]["stock"]
+        newStock = stock - quantity
+        db.execute("UPDATE products SET stock = ? WHERE id = ?", newStock, item)
+
+    db.execute("DELETE FROM cart WHERE user_id = ?", session["user_id"])
+
+    flash("Purchase completed", "success")
+    return redirect(url_for("home"))
 
 
 @app.route("/user", methods=["GET", "POST"])

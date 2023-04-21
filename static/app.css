@@ -8,6 +8,11 @@
     font-weight: 500;
 }
 
+span {
+    font-family: 'Josefin Slab', serif;
+    font-weight: 500;
+}
+
 html,
 body {
     height: 100%;
@@ -562,10 +567,93 @@ footer {
 
 }
 
+.cart-item {
+    width: 90%;
+    margin-bottom: 1rem;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.cart-item span {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.bar-40 {
+    width: 40%;
+}
+
+.bar-60 {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bar-40 img {
+    width: 100%;
+    height: 20vh;
+}
+
+.buy-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buy-cart {
+    display: flex;
+    width: auto;
+    margin: 1rem;
+    flex-direction: column;
+}
+
+#shopping-form button {
+    background-color: #000000;
+    color: #EEEEEE;
+    border: none;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.buy-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 0.5rem;
+}
+
+.buy-price-container {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.rigth {
+    align-self: flex-end;
+    font: weight 400;
+}
+
+.cart-money {
+    font-size: 14px;
+    font-weight: 600;
+}
 
 @media screen and (min-width: 790px) {
     .nav-bar {
         display: none;
+
+    }
+
+    .cart-item {
+        width: 49%;
 
     }
 
@@ -603,4 +691,16 @@ footer {
         width: 450px;
     }
 
+}
+
+@media screen and (min-width: 1500px) {
+    .cart-item {
+        width: 33%;
+
+    }
+
+    .bar-40 img {
+        width: 100%;
+        height: 30vh;
+    }
 }
