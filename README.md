@@ -41,23 +41,11 @@ Once the application is running, you can access it by visiting http://localhost:
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-## Contact
+## Contact Information
 
 If you have any questions or feedback, please feel free to contact me at
-  <p>Gmail</p>
-  <ul>
-     <li>319219247@gmail.com</li>
-  </ul>
-  <p>Alternative Gmail</p>
-  <ul>
-     <li>angelzkfd2@gmail.com</li>
-  </ul>
-  <p>LinkedIn</p>
-    <ul>
-     <li> linkedin.com/in/ángel-corona-62b924268</li>
-  </ul>
-  <p>Cellphone</p>
-      <ul>
-     <li>525560888103</li>
-  </ul>
 
+- Gmail: [319219247@gmail.com](mailto:319219247@gmail.com)
+- Alternative Gmail: [angelzkfd2@gmail.com](mailto:angelzkfd2@gmail.com)
+- LinkedIn: [Ángel Corona](https://www.linkedin.com/in/%C3%A1ngel-corona-62b924268/)
+- Cellphone: [+525560888103](tel:+525560888103)
