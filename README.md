@@ -31,10 +31,10 @@ Once the application is running, you can access it by visiting http://localhost:
 ##Languages and frameworks:
 - This project was built using the Flask web framework (https://flask.palletsprojects.com/)
 - The database for this project was created using SQLite (https://www.sqlite.org/)
-- The JavaScript code for this project was written using jQuery (https://www.javascript.com/
+- The JavaScript code for this project was written using jQuery (https://www.javascript.com/)
 - This project was created using the Python as the main languague  (https://www.python.org/)
 
-##SQL DATABASES:
+## SQL DATABASES:
 
 ## License
 
