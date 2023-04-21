@@ -35,6 +35,7 @@ Once the application is running, you can access it by visiting http://localhost:
 - This project was created using the Python as the main languague  (https://www.python.org/)
 
 ## SQL DATABASES:
+![image](https://user-images.githubusercontent.com/114787259/233714123-2002056e-b4bd-46bb-849d-341bcf14fef8.png)
 
 ## License
 
@@ -44,5 +45,3 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 If you have any questions or feedback, please feel free to contact me at [email address].
 
-
-![image](https://user-images.githubusercontent.com/114787259/224226878-1f4c807f-abed-45c2-9902-f7a9a3116e77.png)
