@@ -48,4 +48,4 @@ If you have any questions or feedback, please feel free to contact me at
 - Gmail: [319219247@gmail.com](mailto:319219247@gmail.com)
 - Alternative Gmail: [angelzkfd2@gmail.com](mailto:angelzkfd2@gmail.com)
 - LinkedIn: [Ángel Corona](https://www.linkedin.com/in/%C3%A1ngel-corona-62b924268/)
-- Cellphone: [+525560888103](tel:+525560888103)
+
