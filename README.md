@@ -43,5 +43,21 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Contact
 
-If you have any questions or feedback, please feel free to contact me at [email address].
+If you have any questions or feedback, please feel free to contact me at
+  <p>Gmail</p>
+  <ul>
+     <li>319219247@gmail.com</li>
+  </ul>
+  <p>Alternative Gmail</p>
+  <ul>
+     <li>angelzkfd2@gmail.com</li>
+  </ul>
+  <p>LinkedIn</p>
+    <ul>
+     <li> linkedin.com/in/ángel-corona-62b924268</li>
+  </ul>
+  <p>Cellphone</p>
+      <ul>
+     <li>525560888103</li>
+  </ul>
 
