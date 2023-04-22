@@ -18,11 +18,11 @@ This is a final project for Harvard's CS50x course, an online store built with F
 
 To install and run this project locally, please follow these steps:
 
-1. Clone this repository: `git clone https://github.com/AngelCorona117/CS50_Final.git`
-2. Install the required packages: `pip install -r requirements.txt`
-3. Crete a file called config.py  `touch config.py` or  `type nul > config.py`
-4. Write you super secret key as follows: `class Config:SECRET_KEY = "you super secret key goes here"`
-5. Run the application: `python app.py`
+1. Clone this repository: <br> `git clone https://github.com/AngelCorona117/CS50_Final.git`
+2. Install the required packages: <br> `pip install -r requirements.txt`
+3. Crete a file called config.py: <br>`touch config.py` or  `type nul > config.py`
+4. Write you super secret key as follows: <br> `class Config:SECRET_KEY = "you super secret key goes here"`
+5. Run the application: <br> `python app.py`
 
 ## Usage
 
