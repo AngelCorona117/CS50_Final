@@ -1,12 +1,17 @@
 # CS50 Final Project -  Unityfty
 
-This is a final project for Harvard's CS50x course, an online store built with Flask, SQL, Python, and JavaScript. The purpose of this project is to create a fully functional web apllication that allows me to update my newly created products to a personal store.
+This is a final project for Harvard's CS50x course, an online store built with Flask, SQL, Python, and JavaScript. The purpose of this project is to create a fully functional web apllication that allows me to update recently created (made by myself) products to my personal store.
 
 ## Features
 
+
+- Users can change their username
+- Users can change their password
 - Users can register and log in to their accounts
+- Users can add update the stock of certain items
 - Users can browse and purchase items from the store
 - Users can add items to their cart and checkout securely
+
 - Users can view their order history and update their profile information
 
 ## Installation
