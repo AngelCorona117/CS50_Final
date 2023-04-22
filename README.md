@@ -33,7 +33,7 @@ Once the application is running, you can access it by visiting http://localhost:
 - The sample items in this project are sourced from SSENSE store (https://www.ssense.com/)
 
 
-##Languages and frameworks:
+## Languages and frameworks:
 - This project was built using the Flask web framework (https://flask.palletsprojects.com/)
 - The database for this project was created using SQLite (https://www.sqlite.org/)
 - The JavaScript code for this project was written using jQuery (https://www.javascript.com/)
